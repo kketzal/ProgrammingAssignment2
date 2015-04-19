@@ -1,32 +1,38 @@
-##--------##---------##--------##---------##--------##---------##--------##
+############################################################################
 ## This function make a "special matrix" with methods to SET and GET
-## a "normal matrix" and his "inverted matrix". The matice##are stored 
+## a "normal matrix" and his "inverted matrix". These matrices are cached. 
 ## Usage:
 ##   ----- Create an empty "special matrix" ------
-##
-##          my_special_matrix <- makeCacheMatrix()
-##
-###------##--------##---------##--------##---------##--------##---------##
-
-##   ----- Set a normal matrix "x" to my "special matrix" ------
-##          
-##          my_special_matrix$set_matrix(x)
-##
-##   ----- Get the normal matrix "x" from my "special matrix" ------
-##
-##          my_special_matrix$get_matrix()
-
-makeCacheMatrix <- function(x = matrix()) {
+##         > my_special_matrix <- makeCacheMatrix()
+##   ----- Create a "special matrix" with a previously created matrix "my_matrix" ------
+##         > my_special_matrix <- makeCacheMatrix(my_matrix)
+###########################################################################
+makeCacheMatrix <- function(my_matrix = matrix()) {
+        # setting initial value in this environment
+        my_inverted_matrix <- NULL
         
-        inverted_matrix <- NULL
-        
-        set_matrix <- function(y) {
-                x <<- y
-                inverted_matrix <<- NULL
+        ## Set a normal matrix "my_matrix" and initializing "my_inverted_matrix". 
+        ## Both in other environment or "caching" (using '<<-' operator).
+        ##      Usage:       
+        ##              my_special_matrix$set_matrix(x)
+        ##-----------------------------------------------
+        set_matrix <- function(my_matrix) {               
+                my_matrix <<- my_matrix                
+                my_inverted_matrix <<- NULL
         }
-        get_matrix <- function() x
-        set_inverted_matrix <- function(inv_mat) inverted_matrix <<- inv_mat
-        get_inverted_matrix <- function() inverted_matrix
+        
+        ##  Get the normal matrix "my_matrix"       
+        ##      Usage:      
+        ##          my_special_matrix$get_matrix()
+        ## ----------------------------------------------
+        get_matrix <- function() my_matrix
+        
+        
+        set_inverted_matrix <- function(inverted_matrix) {
+            my_inverted_matrix <<- inverted_matrix
+        }
+        
+        get_inverted_matrix <- function() my_inverted_matrix
         
         list(set_matrix = set_matrix, 
              get_matrix = get_matrix,
