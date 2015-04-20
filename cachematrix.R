@@ -22,7 +22,7 @@ makeCacheMatrix <- function(my_matrix = matrix()) {
         set_matrix <- function(my_matrix) {               
                 my_matrix <<- my_matrix 
                 
-               ## this line appears not be 
+               ## this line appears not to be necessary...
                # my_inverted_matrix <<- NULL
         }
         
