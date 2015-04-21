@@ -12,6 +12,8 @@
 
 
 ############################################################################
+## Function: makeCacheMatrix(my_matrix = matrix())
+##
 ## This function make a "special matrix" with methods to SET and GET
 ## a "normal matrix" and his "inverted matrix". These matrices are cached. 
 ## Usage:
@@ -71,6 +73,8 @@ makeCacheMatrix <- function(my_matrix = matrix()) {
 
 
 ###########################################################################
+## Function: cacheSolve(my_special_matrix, ...)
+##
 ## This function computes the inverted matrix for a given squared matrix.
 ## To work properly, the argument "my_special_matrix" must be an object 
 ## created with the "makeCacheMatrix" function.
@@ -126,7 +130,7 @@ cacheSolve <- function(my_special_matrix, ...) {
 ##
 ## > my_matrix <- matrix(rnorm(16), nrow=4, ncol=4)
 ## > my_matrix
-## [,1]       [,2]       [,3]       [,4]
+##          [,1]       [,2]       [,3]       [,4]
 ## [1,] -0.29246828  2.1374212  1.6247866 -1.5972936
 ## [2,]  1.02133007 -2.1373991 -1.8863948 -1.3842185
 ## [3,] -0.04096128 -0.2478461  0.1524899 -0.2129463
@@ -137,7 +141,7 @@ cacheSolve <- function(my_special_matrix, ...) {
 ######  ----- Check if the dummy matrix is inside the object:
 ##
 ## > my_special_matrix$get_matrix()
-## [,1]       [,2]       [,3]       [,4]
+##          [,1]       [,2]       [,3]       [,4]
 ## [1,] -0.29246828  2.1374212  1.6247866 -1.5972936
 ## [2,]  1.02133007 -2.1373991 -1.8863948 -1.3842185
 ## [3,] -0.04096128 -0.2478461  0.1524899 -0.2129463
@@ -148,12 +152,12 @@ cacheSolve <- function(my_special_matrix, ...) {
 ## NULL
 ## 
 ###### It's NULL!!! 
-###### We need to use "cacheSolve" function for  get the inverted matrix
+###### We need to use "cacheSolve" function for get the inverted matrix
 ##
 ## > cacheSolve(my_special_matrix)
 ## computting inverted matrix...
 ## caching inverted matrix...
-## [,1]         [,2]       [,3]       [,4]
+##          [,1]         [,2]       [,3]       [,4]
 ## [1,]  0.26270575  0.797193971 -2.8099443 -2.0514024
 ## [2,]  0.24039258 -0.004145921 -2.0317485  0.1207107
 ## [3,]  0.07357938  0.009953413  1.3732178 -0.9399759
@@ -163,7 +167,27 @@ cacheSolve <- function(my_special_matrix, ...) {
 ##
 ## > cacheSolve(my_special_matrix)
 ## getting cached data...
-## [,1]         [,2]       [,3]       [,4]
+##          [,1]         [,2]       [,3]       [,4]
+## [1,]  0.26270575  0.797193971 -2.8099443 -2.0514024
+## [2,]  0.24039258 -0.004145921 -2.0317485  0.1207107
+## [3,]  0.07357938  0.009953413  1.3732178 -0.9399759
+## [4,] -0.27763345 -0.141391262 -0.8074262 -0.4190091
+## > 
+##
+###### To get the original Matrix, we can call to get_matrix() function
+##
+## > my_special_matrix$get_matrix()
+##          [,1]       [,2]       [,3]       [,4]
+## [1,] -0.29246828  2.1374212  1.6247866 -1.5972936
+## [2,]  1.02133007 -2.1373991 -1.8863948 -1.3842185
+## [3,] -0.04096128 -0.2478461  0.1524899 -0.2129463
+## [4,] -0.07191958 -0.2174002 -0.7338735 -0.4507851
+## > 
+## 
+###### To get the inverted matrix, we can call to get_inverted_matrix()
+## 
+## > my_special_matrix$get_inverted_matrix()
+##          [,1]         [,2]       [,3]       [,4]
 ## [1,]  0.26270575  0.797193971 -2.8099443 -2.0514024
 ## [2,]  0.24039258 -0.004145921 -2.0317485  0.1207107
 ## [3,]  0.07357938  0.009953413  1.3732178 -0.9399759
