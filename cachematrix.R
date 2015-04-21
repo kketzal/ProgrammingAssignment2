@@ -1,3 +1,16 @@
+##///////////////////////////////////////////////////////////////////////////
+##
+## File Name:   cachematrix.R (prototype from R. Peng)
+## Author:      Manuel Martínez Peinado. Spain. 2015 
+## 
+## Content:
+##              * makeCacheMatrix() function
+##              * cacheSolve() function
+##              * Example
+## 
+##///////////////////////////////////////////////////////////////////////////
+
+
 ############################################################################
 ## This function make a "special matrix" with methods to SET and GET
 ## a "normal matrix" and his "inverted matrix". These matrices are cached. 
@@ -80,7 +93,9 @@ cacheSolve <- function(my_special_matrix, ...) {
                 return(my_inverted_matrix)
         }
         
+        
         ## ELSE... 
+        ##
         ## 1st: -->  get the matrix data 
         my_matrix <- my_special_matrix$get_matrix()
         
@@ -90,10 +105,11 @@ cacheSolve <- function(my_special_matrix, ...) {
                 stop("Matrix isn't squared, therefore, it's not invertible.")
         }
                 
-        ## 3th: --> computting the inverse and storing in cache
+        ## 3th: --> computting inverted matrix 
         message("computting inverted matrix...")
         my_inverted_matrix <- solve(my_matrix)
         
+        ## 4th: --> caching inverted matrix
         message("caching inverted matrix...")
         my_special_matrix$set_inverted_matrix(my_inverted_matrix)
         
