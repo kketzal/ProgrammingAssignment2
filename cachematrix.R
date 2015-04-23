@@ -1,7 +1,7 @@
 ##///////////////////////////////////////////////////////////////////////////
 ##
 ## File Name:   cachematrix.R (prototype from R. Peng)
-## Author:      Manuel Martínez Peinado. Spain. 2015 
+## Author:      Manuel Martínez Peinado (a.k.a kketzal). Spain. 2015 
 ## 
 ## Content:
 ##              * makeCacheMatrix() function
@@ -29,16 +29,14 @@ makeCacheMatrix <- function(my_matrix = matrix()) {
         # setting initial value in this environment
         my_inverted_matrix <- NULL
         
-        ## Set a normal matrix ("my_matrix") and initializing "my_inverted_matrix". 
+        ## Set a normal matrix ("my_mat") and initializing "my_inverted_matrix". 
         ## Both in other environment or "caching" (using '<<-' operator).
         ##      Usage:       
-        ##              my_special_matrix$set_matrix(x)
+        ##              my_special_matrix$set_matrix(my_mat)
         ##-----------------------------------------------
-        set_matrix <- function(my_matrix) {               
-                my_matrix <<- my_matrix 
-                
-               ## this line appears not to be necessary...
-               # my_inverted_matrix <<- NULL
+        set_matrix <- function(my_mat) {               
+                my_matrix <<- my_mat           
+                my_inverted_matrix <<- NULL
         }
         
         ##  Get the normal matrix ("my_matrix")
@@ -83,7 +81,6 @@ makeCacheMatrix <- function(my_matrix = matrix()) {
 ##
 ## Return: show the inverted matrix, or an error if the matrix isn't a 
 ##         squared matrix. 
-##         The inverted matrix is cached inside the "my_special_matrix" object
 ###########################################################################
 cacheSolve <- function(my_special_matrix, ...) {
         
